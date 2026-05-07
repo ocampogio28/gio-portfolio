@@ -9,6 +9,10 @@
   --foreground: #000000;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* 
    Setting the body to use these variables ensures 
    the entire screen stays black.

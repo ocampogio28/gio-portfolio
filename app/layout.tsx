@@ -1,7 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Inter,
+  Space_Mono,
+  EB_Garamond,
+} from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +33,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gio | Software & Data Specialist",
-  description:
-    "Personal portfolio of a software developer and data specialist.",
+  title: "Gio | Software & Web Designer",
+  description: "Personal portfolio of a software developer and web designer.",
 };
 
 export default function RootLayout({
@@ -25,23 +43,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    /* 
-       Adding 'bg-black' to both html and body ensures 
-       there are no white gaps on any screen size.
-    */
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-black`}
     >
+      <body
+        className={`${inter.variable} ${spaceMono.variable} ${ebGaramond.variable} antialiased`}
+      ></body>
+
       <body className="min-h-full flex flex-col bg-black text-white selection:bg-blue-500/30">
-        {/* 
-           The Toaster is outside the main flow, 
-           so it won't affect your page layout spacing. 
-        */}
         <Toaster
           position="top-center"
           toastOptions={{
-            // Optional: makes the toasts look better on a black background
             style: {
               background: "#ffffff",
               color: "#000000",
