@@ -45,13 +45,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-black`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      {/* Combined both body tags into ONE. 
+          I merged your font variables and your styling classes here.
+      */}
       <body
-        className={`${inter.variable} ${spaceMono.variable} ${ebGaramond.variable} antialiased`}
-      ></body>
-
-      <body className="min-h-full flex flex-col bg-black text-white selection:bg-blue-500/30">
+        className={`${inter.variable} ${spaceMono.variable} ${ebGaramond.variable} min-h-full flex flex-col bg-white text-black antialiased selection:bg-blue-500/30`}
+      >
         <Toaster
           position="top-center"
           toastOptions={{
