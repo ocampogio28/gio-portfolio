@@ -46,10 +46,10 @@ export default function Home() {
     <main className="min-h-screen font-sans bg-white">
       <Navbar />
 
-      {/* 1st TAB*/}
+      {/* 1st TAB - Hero Section */}
       <section
         id="home"
-        className="relative w-full h-[85vh] bg-[#fdfaf3] overflow-hidden flex items-center"
+        className="relative w-full min-h-[85vh] bg-[#fdfaf3] overflow-hidden flex items-center pt-24 md:pt-0"
       >
         <Image
           src="/checkered-bg.png"
@@ -61,8 +61,9 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="text-black space-y-4">
-              <h1 className="text-6xl font-serif font-bold tracking-tight text-zinc-900">
+            {/* Added pt-8 here to push the text down further on mobile */}
+            <div className="text-black space-y-4 pt-8 md:pt-0">
+              <h1 className="text-6xl font-serif font-bold tracking-tight text-zinc-900 leading-[1.1]">
                 {`Hi, I'm Gio`}
               </h1>
               <p className="text-xl font-medium font-sans uppercase tracking-[0.2em] text-zinc-600">
@@ -110,16 +111,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3rd TAB*/}
+      {/* 3rd TAB - Designs */}
       <section
         id="design"
         className="relative py-28 overflow-hidden flex items-center bg-[#fdfaf3]"
       >
-        <Image
-          src="/checkered-bg.png"
-          alt="Design Background"
-          fill
-          className="object-cover opacity-20 mix-blend-multiply z-0"
+        {/* IMPROVED BACKGROUND LOGIC:
+            Instead of 'fill' (which stretches), we use a div with a repeating background 
+            image that stays the same size regardless of section height.
+        */}
+        <div
+          className="absolute inset-0 opacity-20 mix-blend-multiply z-0"
+          style={{
+            backgroundImage: "url('/checkered-bg.png')",
+            backgroundSize: "400px", // Keeps the pattern size consistent and sharp
+            backgroundRepeat: "repeat",
+          }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
@@ -144,18 +151,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4th TAB*/}
+      {/* 4th TAB - Contact (Papery Vibe) */}
       <section id="contact" className="py-32 bg-[#efeee9]">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="mb-16">
-            <h2 className="text-4xl font-serif font-bold text-zinc-900">
-              Get in Touch
-            </h2>
-            <p className="text-zinc-600 mt-4 text-lg">
-              Currently open to new projects and collaborations.
-            </p>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* LEFT SIDE: Feedback Form */}
+            <div className="flex flex-col">
+              <div className="mb-10">
+                <h2 className="text-4xl font-serif font-bold text-zinc-900">
+                  Get in Touch
+                </h2>
+                <p className="text-zinc-600 mt-4 text-lg">
+                  Currently open to new projects and collaborations.
+                </p>
+              </div>
+
+              <div className="max-w-md w-full">
+                <Feedback />
+              </div>
+            </div>
+
+            {/* RIGHT SIDE: Clean, Borderless Image Space */}
+            <div className="relative w-full aspect-square md:aspect-auto md:h-[500px]">
+              {/* To get that pure 'papery' floating vibe, use a transparent .png here.
+                  
+                  Replace this Next.js Image component when ready:
+               */}
+              <Image
+                src="/your-asset.gif" // Or your-asset.png
+                alt="Contact Visual"
+                fill
+                className="object-contain p-4" // 'object-contain' is usually better for 'papery' assets than 'object-cover'
+                priority
+              />
+            </div>
           </div>
-          <Feedback />
         </div>
       </section>
 
