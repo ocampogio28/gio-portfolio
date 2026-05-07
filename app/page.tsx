@@ -77,9 +77,9 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center md:justify-end">
-              <div className="relative w-64 h-64 md:w-80 md:h-80">
+              <div className="relative w-65 h-64 md:w-120 md:h-120">
                 <Image
-                  src="/your-asset.gif"
+                  src="/home.gif"
                   alt="Gio's Visual Work"
                   fill
                   className="object-contain p-4"
@@ -149,9 +149,8 @@ export default function Home() {
 
       {/* 4th TAB - Contact (Papery Vibe) */}
       <section id="contact" className="py-32 bg-[#efeee9]">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* LEFT SIDE: Feedback Form */}
             <div className="flex flex-col">
               <div className="mb-10">
                 <h2 className="text-4xl font-serif font-bold text-zinc-900">
@@ -167,17 +166,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT SIDE: Clean, Borderless Image Space */}
             <div className="relative w-full aspect-square md:aspect-auto md:h-[500px]">
-              {/* To get that pure 'papery' floating vibe, use a transparent .png here.
-                  
-                  Replace this Next.js Image component when ready:
-               */}
               <Image
-                src="/your-asset.gif" // Or your-asset.png
+                src="/feedback.gif"
                 alt="Contact Visual"
                 fill
-                className="object-contain p-4" // 'object-contain' is usually better for 'papery' assets than 'object-cover'
+                className="object-contain p-4"
                 priority
               />
             </div>

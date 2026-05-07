@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* 
-   We force the background to black and foreground to white 
-   regardless of the user's system theme settings.
-*/
 :root {
   --background: #ffffff;
   --foreground: #000000;
@@ -13,10 +9,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 
-   Setting the body to use these variables ensures 
-   the entire screen stays black.
-*/
 body {
   background: var(--background);
   color: var(--foreground);
