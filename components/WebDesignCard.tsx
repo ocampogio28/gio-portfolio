@@ -13,6 +13,7 @@ export default function WebDesignCard({ title, images }: WebDesignProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Close with Escape Key, Arrows, and Lock Scroll
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -49,7 +50,7 @@ export default function WebDesignCard({ title, images }: WebDesignProps) {
 
   return (
     <>
-      {/* 1. THE GRID CARD */}
+      {/* CARD VIEW */}
       <div
         onClick={() => setIsOpen(true)}
         className="group cursor-pointer relative"
@@ -73,16 +74,13 @@ export default function WebDesignCard({ title, images }: WebDesignProps) {
         </h3>
       </div>
 
-      {/* 2. THE LIGHTBOX MODAL */}
+      {/* LIGHTBOX MODAL */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
           className="fixed inset-0 z-[9999] bg-white/98 backdrop-blur-xl flex flex-col items-center justify-center p-6 md:p-20 cursor-zoom-out"
         >
-          {/* FIXED CLOSE BUTTON:
-              - Added top-16 and mt-8 to clear any sticky/fixed Navbars
-              - Added a slight shadow for depth
-          */}
+          {/* REPOSITIONED CLOSE BUTTON */}
           <button
             onClick={() => setIsOpen(false)}
             className="absolute top-16 right-10 mt-8 p-4 bg-zinc-900 text-white rounded-full transition-all hover:scale-110 active:scale-95 z-[10000] shadow-xl cursor-pointer"
@@ -90,7 +88,6 @@ export default function WebDesignCard({ title, images }: WebDesignProps) {
             <X className="w-6 h-6" />
           </button>
 
-          {/* CONSTRAINED IMAGE CONTAINER */}
           <div
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-4xl aspect-video flex items-center justify-center cursor-default bg-white rounded-2xl overflow-hidden"
@@ -103,7 +100,6 @@ export default function WebDesignCard({ title, images }: WebDesignProps) {
               priority
             />
 
-            {/* NAVIGATION ARROWS */}
             {images.length > 1 && (
               <div className="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
                 <button
@@ -122,7 +118,6 @@ export default function WebDesignCard({ title, images }: WebDesignProps) {
             )}
           </div>
 
-          {/* FOOTER INFO */}
           <div className="mt-12 text-center pointer-events-none">
             <h2 className="text-3xl font-serif font-bold text-zinc-900 tracking-tight">
               {title}

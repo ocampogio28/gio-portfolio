@@ -11,14 +11,14 @@ export default function Home() {
       title: "Portfolio Website",
       description:
         "My personal Portfolio website showcasing my work and skills. Built with Next.js and Tailwind.",
-      image: "/portfolio-preview.png", // TO BE ADDED
+      image: "/portfolio-preview.png",
       link: "https://github.com/your-username/portfolio",
     },
     {
       title: "Virtual Museum",
       description:
         "An interactive virtual museum experience exploring digital art and 3D modeling.",
-      image: "/museum-preview.png", // TO BE ADDED
+      image: "/museum-preview.png",
       link: "https://your-museum-demo.com",
     },
   ];
@@ -123,7 +123,6 @@ export default function Home() {
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
-          {/* Left-aligned text to match your screenshot */}
           <div className="mb-20">
             <h2 className="text-5xl font-serif font-bold text-zinc-900 tracking-tight">
               Designs
@@ -133,7 +132,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* The Grid with mt-20 provides the clear gap you need */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
             {webDesignCollections.map((collection, index) => (
               <WebDesignCard
@@ -161,7 +159,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer Area - Seamless transition (no borders) */}
       <footer className="bg-white">
         <div className="max-w-5xl mx-auto px-6 py-12">
           <Footer />
