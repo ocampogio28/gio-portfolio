@@ -114,19 +114,15 @@ export default function Home() {
       {/* 3rd TAB - Designs */}
       <section
         id="design"
-        className="relative py-28 overflow-hidden flex items-center bg-[#fdfaf3]"
+        className="relative w-full py-28 overflow-hidden flex items-center bg-[#fdfaf3]"
       >
-        {/* IMPROVED BACKGROUND LOGIC:
-            Instead of 'fill' (which stretches), we use a div with a repeating background 
-            image that stays the same size regardless of section height.
-        */}
-        <div
-          className="absolute inset-0 opacity-20 mix-blend-multiply z-0"
-          style={{
-            backgroundImage: "url('/checkered-bg.png')",
-            backgroundSize: "400px", // Keeps the pattern size consistent and sharp
-            backgroundRepeat: "repeat",
-          }}
+        {/* Reverted to the Hero-style background logic */}
+        <Image
+          src="/checkered-bg.png"
+          alt="Pattern"
+          fill
+          priority
+          className="object-cover opacity-20 mix-blend-multiply object-top"
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
