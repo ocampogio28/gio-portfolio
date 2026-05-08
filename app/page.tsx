@@ -25,8 +25,13 @@ export default function Home() {
 
   const webDesignCollections = [
     {
-      title: "E-commerce Study",
-      images: ["/shop-main.png", "/shop-cart.png", "/shop-mobile.png"],
+      title: "Personal Portfolio",
+      images: [
+        "/portfolio1-1.png",
+        "/portfolio1-2.png",
+        "/portfolio1-3.png",
+        "/portfolio1-4.png",
+      ],
     },
     {
       title: "Typography Hero",
