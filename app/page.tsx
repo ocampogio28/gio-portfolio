@@ -10,9 +10,9 @@ export default function Home() {
     {
       title: "Portfolio Website",
       description:
-        "My personal Portfolio website showcasing my work and skills. Built with Next.js and Tailwind.",
-      image: "/portfolio-preview.png",
-      link: "https://github.com/your-username/portfolio",
+        "My personal Portfolio website showcasing my work and skills. Built with Next.js, Tailwind, Supabase and Vercel.",
+      image: "/portfolio-1.jpg",
+      link: "https://gio-portfolio-rho.vercel.app/",
     },
     {
       title: "Virtual Museum",
