@@ -48,34 +48,8 @@ export default function Home() {
     },
   ];
 
-  const webDesignCollections = [
-    {
-      title: "Personal Portfolio",
-      images: [
-        "/portfolio1-1.png",
-        "/portfolio1-2.png",
-        "/portfolio1-3.png",
-        "/portfolio1-4.png",
-      ],
-    },
-    {
-      title: "Typography Hero",
-      images: ["/typo-1.png"],
-    },
-    {
-      title: "SaaS Dashboard",
-      images: ["/dash-light.png", "/dash-dark.png"],
-    },
-    {
-      title: "Minimal Landing",
-      images: ["/land-1.png", "/land-2.png", "/land-3.png", "/land-4.png"],
-    },
-  ];
-
   return (
     <main className="min-h-screen font-sans bg-white">
-      <Navbar />
-
       {/* 1st TAB - Hero Section */}
       <section
         id="home"
@@ -124,14 +98,6 @@ export default function Home() {
         id="projects"
         className="py-32 bg-[#efeee9] relative overflow-hidden"
       >
-        {/* 1. Background Image Layer */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70"
-          style={{ backgroundImage: "url('/bg.png')" }}
-        >
-          <div className="absolute inset-0 bg-white/20 pointer-events-none"></div>
-        </div>
-
         {/* 2. Paper Texture Overlay */}
         <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt-paper.png')]"></div>
 
@@ -142,11 +108,10 @@ export default function Home() {
             <div className="absolute inset-0 blur-2xl bg-[#efeee9]/60 scale-150 -z-10"></div>
 
             <h2 className="text-7xl font-serif font-bold text-zinc-900 tracking-tight">
-              Selected Projects
+              Projects and Designs
             </h2>
           </div>
 
-          {/* Project Grid */}
           <div className="grid grid-cols-6 gap-6 auto-rows-[300px] md:auto-rows-[350px]">
             {projects.map((project, index) => {
               const gridClasses =
@@ -163,7 +128,6 @@ export default function Home() {
               return (
                 <div
                   key={project.title}
-                  /* REMOVED shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] for a flat look */
                   className={`${gridClasses} border-[1.5px] border-black group relative overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-2`}
                 >
                   {/* Project Image */}
@@ -180,7 +144,7 @@ export default function Home() {
                   )}
 
                   {/* Content Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-8 flex flex-col justify-end">
                     <div className="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <h3 className="text-white font-serif font-bold text-4xl uppercase leading-tight tracking-tighter">
                         {project.title}
@@ -200,56 +164,14 @@ export default function Home() {
                       )}
                     </div>
                   </div>
-
-                  {/* REMOVED: The Inner Shadow div that was here */}
                 </div>
               );
             })}
           </div>
         </div>
-
-        {/* 4. Book Binding Edge Gradients */}
-        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-black/10 to-transparent pointer-events-none z-20"></div>
-        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-black/10 to-transparent pointer-events-none z-20"></div>
       </section>
 
-      {/* 3rd TAB - Designs */}
-      <section
-        id="design"
-        className="relative w-full py-28 overflow-hidden flex items-center bg-[#fdfaf3]"
-      >
-        {/* Reverted to the Hero-style background logic */}
-        <Image
-          src="/checkered-bg.png"
-          alt="Pattern"
-          fill
-          priority
-          className="object-cover opacity-20 mix-blend-multiply object-top"
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
-          <div className="mb-20">
-            <h2 className="text-5xl font-serif font-bold text-zinc-900 tracking-tight">
-              Designs
-            </h2>
-            <p className="text-lg mt-4 text-zinc-600 leading-relaxed max-w-xl font-sans">
-              A collection of UI experiments and web studies.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
-            {webDesignCollections.map((collection, index) => (
-              <WebDesignCard
-                key={index}
-                title={collection.title}
-                images={collection.images}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4th TAB - Contact (Papery Vibe) */}
+      {/* 3rd TAB - Contact (Papery Vibe) */}
       <section id="contact" className="py-32 bg-[#efeee9]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

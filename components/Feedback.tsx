@@ -4,7 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 export default function Feedback() {
-  const [name, setName] = useState(""); // Kept your 'name' variable
+  const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
@@ -29,7 +29,6 @@ export default function Feedback() {
       setName("");
       setMessage("");
 
-      // Reset button text after 3 seconds
       setTimeout(() => setStatus("idle"), 3000);
     } catch {
       setStatus("error");
@@ -39,20 +38,21 @@ export default function Feedback() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-[#D1CFCD] rounded-[32px] p-6 shadow-sm border border-zinc-300/40">
-        <h3 className="text-lg font-mono text-zinc-900 mb-6 px-1">
+      {/* Container: Changed to white, square (rounded-none), and black border */}
+      <div className="bg-white rounded-none p-6 border-2 border-black">
+        <h3 className="text-lg font-mono text-zinc-900 mb-6 px-1 uppercase tracking-tighter font-bold">
           {status === "sent"
             ? "Thanks for the feedback!"
             : status === "error"
               ? "Something went wrong..."
-              : "Leave a feedback or Contact me for work"}
+              : "Contact me for work"}
         </h3>
 
         <form onSubmit={handleSubmit} className="space-y-3">
-          {/* Name Input */}
+          {/* Name Input: rounded-none and black border */}
           <input
             type="text"
-            className="w-full bg-[#FAF9F7] text-zinc-700 font-mono text-sm rounded-[16px] px-5 py-4 focus:outline-none border border-transparent focus:border-zinc-400 transition placeholder:text-zinc-400"
+            className="w-full bg-[#FAF9F7] text-zinc-700 font-mono text-sm rounded-none px-5 py-4 focus:outline-none border border-black focus:bg-white transition placeholder:text-zinc-400"
             placeholder="Your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -60,9 +60,9 @@ export default function Feedback() {
             disabled={status === "sending"}
           />
 
-          {/* Message Input */}
+          {/* Message Input: rounded-none and black border */}
           <textarea
-            className="w-full bg-[#FAF9F7] text-zinc-700 font-mono text-sm rounded-[16px] px-5 py-4 focus:outline-none border border-transparent focus:border-zinc-400 transition resize-none placeholder:text-zinc-400"
+            className="w-full bg-[#FAF9F7] text-zinc-700 font-mono text-sm rounded-none px-5 py-4 focus:outline-none border border-black focus:bg-white transition resize-none placeholder:text-zinc-400"
             placeholder="Your message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -71,7 +71,7 @@ export default function Feedback() {
             disabled={status === "sending"}
           />
 
-          {/* Styled Button */}
+          {/* Button: rounded-none and solid colors */}
           <div className="flex pt-2">
             <button
               type="submit"
@@ -81,8 +81,8 @@ export default function Feedback() {
                   ? "bg-green-600"
                   : status === "error"
                     ? "bg-red-500"
-                    : "bg-[#555351]"
-              } text-[#FAF9F7] font-mono text-base rounded-[14px] px-8 py-3 hover:opacity-90 transition active:scale-95 shadow-md disabled:opacity-50`}
+                    : "bg-black"
+              } text-white font-mono text-base rounded-none px-8 py-3 hover:opacity-90 transition disabled:opacity-50 w-full uppercase tracking-widest font-bold`}
             >
               {status === "idle" && "Send"}
               {status === "sending" && "Sending..."}
