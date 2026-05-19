@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-space-mono);
+  --font-serif: var(--font-eb-garamond);
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;
@@ -12,6 +18,10 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
+}
+
+/* --- ADD THIS RIGHT HERE --- */
+.font-rainy {
+  font-family: var(--font-rainyhearts), monospace;
 }

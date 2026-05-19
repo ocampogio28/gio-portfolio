@@ -38,9 +38,8 @@ export default function Feedback() {
 
   return (
     <div className="w-full max-w-sm">
-      {/* Container: Changed to white, square (rounded-none), and black border */}
       <div className="bg-white rounded-none p-6 border-2 border-black">
-        <h3 className="text-lg font-mono text-zinc-900 mb-6 px-1 uppercase tracking-tighter font-bold">
+        <h3 className="text-2xl font-rainy font-bold mb-5">
           {status === "sent"
             ? "Thanks for the feedback!"
             : status === "error"
@@ -52,7 +51,7 @@ export default function Feedback() {
           {/* Name Input: rounded-none and black border */}
           <input
             type="text"
-            className="w-full bg-[#FAF9F7] text-zinc-700 font-mono text-sm rounded-none px-5 py-4 focus:outline-none border border-black focus:bg-white transition placeholder:text-zinc-400"
+            className="w-full text-base font-rainy px-5 py-4 border border-black focus:bg-white transition resize-none placeholder:text-zinc-400"
             placeholder="Your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -62,7 +61,7 @@ export default function Feedback() {
 
           {/* Message Input: rounded-none and black border */}
           <textarea
-            className="w-full bg-[#FAF9F7] text-zinc-700 font-mono text-sm rounded-none px-5 py-4 focus:outline-none border border-black focus:bg-white transition resize-none placeholder:text-zinc-400"
+            className="w-full text-base font-rainy px-5 py-4 border border-black focus:bg-white transition resize-none placeholder:text-zinc-400"
             placeholder="Your message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -82,7 +81,7 @@ export default function Feedback() {
                   : status === "error"
                     ? "bg-red-500"
                     : "bg-black"
-              } text-white font-mono text-base rounded-none px-8 py-3 hover:opacity-90 transition disabled:opacity-50 w-full uppercase tracking-widest font-bold`}
+              } text-white font-rainy text-2xl py-2 hover:opacity-90 transition disabled:opacity-50 w-full uppercase tracking-widest`}
             >
               {status === "idle" && "Send"}
               {status === "sending" && "Sending..."}

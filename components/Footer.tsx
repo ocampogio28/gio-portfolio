@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="w-full py-12 text-center">
       <div className="flex flex-col items-center space-y-6">
         {/* Contact Links */}
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 font-mono text-sm tracking-tight">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 font-rainy text-2xl">
           <a
             href="mailto:yourname@email.com"
             className="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-zinc-400">
+        <p className=" font-rainy font-2xl">
           © {new Date().getFullYear()} GIO. All rights reserved.
         </p>
       </div>

@@ -6,8 +6,15 @@ import {
   Space_Mono,
   EB_Garamond,
 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+
+const rainyheart = localFont({
+  src: "./font/rainyhearts.ttf",
+  variable: "--font-rainyhearts",
+  display: "swap",
+});
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -47,11 +54,8 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      {/* Combined both body tags into ONE. 
-          I merged your font variables and your styling classes here.
-      */}
       <body
-        className={`${inter.variable} ${spaceMono.variable} ${ebGaramond.variable} min-h-full flex flex-col bg-white text-black antialiased selection:bg-blue-500/30`}
+        className={`${inter.variable} ${spaceMono.variable} ${ebGaramond.variable} ${rainyheart.variable} min-h-full flex flex-col bg-white text-black antialiased selection:bg-blue-500/30`}
       >
         <Toaster
           position="top-center"

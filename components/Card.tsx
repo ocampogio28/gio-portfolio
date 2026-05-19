@@ -52,20 +52,12 @@ export default function Card() {
   ];
 
   return (
-    <section
-      id="projects"
-      className="py-32 bg-[#efeee9] relative overflow-hidden"
-    >
-      {/* Paper Texture Overlay */}
-      <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt-paper.png')]" />
+    <section id="projects" className="py-10 bg-[#ffffff] ">
+      <div className="absolute inset-0 z-0 pointer-events-none" />
 
-      {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-5xl mx-auto px-6 ">
         <div className="relative mb-20">
-          {/* Invisible blur 'cloud' behind the text */}
-          <div className="absolute inset-0 blur-2xl bg-[#efeee9]/60 scale-150 -z-10" />
-
-          <h2 className="text-7xl font-serif font-bold text-zinc-900 tracking-tight">
+          <h2 className="text-6xl font-rainy font-bold">
             Projects and Designs
           </h2>
         </div>
@@ -116,18 +108,18 @@ function ProjectItem({ project, gridClasses }: ProjectItemProps) {
       {/* Content Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-8 flex flex-col justify-end">
         <div className="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <h3 className="text-white font-serif font-bold text-4xl uppercase leading-tight tracking-tighter">
+          <h3 className="text-white font-rainy font-bold text-4xl uppercase leading-tight tracking-tighter">
             {project.title}
           </h3>
 
-          <p className="text-zinc-300 text-sm mt-3 max-w-xl line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-sans">
+          <p className="text-zinc-300 text-sm mt-3 max-w-xl line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-rainy">
             {project.description}
           </p>
 
           {project.link && project.link !== "#" && (
             <a
               href={project.link}
-              className="inline-block mt-6 text-[11px] text-white font-bold uppercase border-b border-white/30 pb-1 hover:border-white transition-colors tracking-[0.2em]"
+              className="inline-block mt-6 text-[11px] text-white font-rainy uppercase border-b border-white/30 pb-1 hover:border-white transition-colors tracking-[0.2em]"
             >
               Visit Project
             </a>
