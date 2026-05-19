@@ -1,103 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import Feedback from "@/components/Feedback";
 import Widget from "@/components/Widget";
+import Footer from "@/components/Footer";
 
-function useDraggable(initialX: number, initialY: number) {
-  const [position, setPosition] = useState({ x: initialX, y: initialY });
-  const dragRef = useRef<{
-    startX: number;
-    startY: number;
-    posX: number;
-    posY: number;
-  } | null>(null);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (
-      (e.target as HTMLElement).closest(".window-btn") ||
-      (e.target as HTMLElement).closest(".resize-handle")
-    )
-      return;
-    dragRef.current = {
-      startX: e.clientX,
-      startY: e.clientY,
-      posX: position.x,
-      posY: position.y,
-    };
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  };
-
-  const onMouseMove = (e: MouseEvent) => {
-    if (!dragRef.current) return;
-    setPosition({
-      x: dragRef.current.posX + (e.clientX - dragRef.current.startX),
-      y: dragRef.current.posY + (e.clientY - dragRef.current.startY),
-    });
-  };
-
-  const onMouseUp = () => {
-    dragRef.current = null;
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", onMouseUp);
-  };
-
-  return { position, onMouseDown };
-}
-
-function useResizable(
-  initialWidth: number,
-  initialHeight: number,
-  minWidth = 280,
-  minHeight = 200,
-) {
-  const [size, setSize] = useState({
-    width: initialWidth,
-    height: initialHeight,
-  });
-  const resizeRef = useRef<{
-    startWidth: number;
-    startHeight: number;
-    startX: number;
-    startY: number;
-  } | null>(null);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    resizeRef.current = {
-      startWidth: size.width,
-      startHeight: size.height,
-      startX: e.clientX,
-      startY: e.clientY,
-    };
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  };
-
-  const onMouseMove = (e: MouseEvent) => {
-    if (!resizeRef.current) return;
-    const newWidth = Math.max(
-      minWidth,
-      resizeRef.current.startWidth + (e.clientX - resizeRef.current.startX),
-    );
-    const newHeight = Math.max(
-      minHeight,
-      resizeRef.current.startHeight + (e.clientY - resizeRef.current.startY),
-    );
-    setSize({ width: newWidth, height: newHeight });
-  };
-
-  const onMouseUp = () => {
-    resizeRef.current = null;
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", onMouseUp);
-  };
-
-  return { size, onMouseDown };
-}
+import { useDraggable } from "@/hooks/useDraggable";
+import { useResizable } from "@/hooks/useResizable";
 
 export default function Home() {
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
@@ -132,7 +43,7 @@ export default function Home() {
   return (
     <main
       style={{
-        backgroundImage: "url('/bg.jpg')", // Put your image path here
+        backgroundImage: "url('/bg.jpg')",
         backgroundRepeat: "repeat",
       }}
       className="relative h-screen w-screen overflow-hidden bg-[#efeee9] font-rainy select-none p-2"
@@ -152,10 +63,11 @@ export default function Home() {
             activeWindow === "master" ? "z-10" : "z-0"
           }`}
         >
-          <div className="border border-black bg-white flex flex-col h-full relative overflow-hidden">
+          <div className="border border-black bg-white flex flex-col h-full relative overflow-hidden justify-between">
+            {/* ─── WINDOW HEADER ──────────────────────────────────────── */}
             <div
               onMouseDown={masterDrag.onMouseDown}
-              className="cursor-move border-b border-black px-3 py-1 grid grid-cols-3 items-center bg-white select-none"
+              className="cursor-move border-b border-black px-3 py-1 grid grid-cols-3 items-center bg-white select-none shrink-0"
             >
               <span className="text-left text-xs opacity-40">[C:\]</span>
               <span className="text-center tracking-wide text-sm">
@@ -171,9 +83,11 @@ export default function Home() {
               </div>
             </div>
 
+            {/* ─── MAIN WORKSPACE BODY ────────────────────────────────── */}
             <div className="flex-1 relative bg-[#fafafa] p-6 pattern-dots overflow-hidden">
               <Widget />
 
+              {/* Desktop Executable Icons */}
               <div className="flex flex-col gap-8 absolute z-0">
                 <button
                   onClick={() => toggleWindow("info")}
@@ -211,6 +125,7 @@ export default function Home() {
                 </button>
               </div>
 
+              {/* SUB-WINDOW: INFO */}
               {openWindows.info && (
                 <div
                   onClick={(e) => {
@@ -246,7 +161,6 @@ export default function Home() {
                     <div className="p-4 flex-1 overflow-y-auto">
                       <Hero />
                     </div>
-                    {/* Corner Resize Handle */}
                     <div
                       onMouseDown={infoResize.onMouseDown}
                       className="resize-handle absolute bottom-0 right-0 w-4 h-4 cursor-se-resize flex items-end justify-end p-[2px] z-50"
@@ -257,7 +171,7 @@ export default function Home() {
                 </div>
               )}
 
-              {/* PROJECTS WINDOW */}
+              {/* SUB-WINDOW: PROJECTS */}
               {openWindows.projects && (
                 <div
                   onClick={(e) => {
@@ -275,7 +189,6 @@ export default function Home() {
                   }`}
                 >
                   <div className="border border-black bg-white flex flex-col h-full relative">
-                    {/* 1PX THIN LINE HEADER */}
                     <div
                       onMouseDown={projectsDrag.onMouseDown}
                       className="cursor-move border-b border-black px-2 py-0.5 grid grid-cols-3 items-center bg-white"
@@ -296,7 +209,6 @@ export default function Home() {
                     <div className="p-4 flex-1 overflow-y-auto">
                       <Card />
                     </div>
-                    {/* Corner Resize Handle */}
                     <div
                       onMouseDown={projectsResize.onMouseDown}
                       className="resize-handle absolute bottom-0 right-0 w-4 h-4 cursor-se-resize flex items-end justify-end p-[2px] z-50"
@@ -307,7 +219,7 @@ export default function Home() {
                 </div>
               )}
 
-              {/* CONTACT WINDOW */}
+              {/* SUB-WINDOW: CONTACT */}
               {openWindows.contact && (
                 <div
                   onClick={(e) => {
@@ -343,7 +255,6 @@ export default function Home() {
                     <div className="p-6 flex-1 overflow-y-auto space-y-4">
                       <Feedback />
                     </div>
-
                     <div
                       onMouseDown={contactResize.onMouseDown}
                       className="resize-handle absolute bottom-0 right-0 w-4 h-4 cursor-se-resize flex items-end justify-end p-[2px] z-50"
@@ -355,6 +266,9 @@ export default function Home() {
               )}
             </div>
 
+            {/* ─── LOWER INNER FOOTER TASKBAR ─────────────────────────── */}
+            <Footer />
+            {/* Corner Resize Handle Overlay */}
             <div
               onMouseDown={masterResize.onMouseDown}
               className="resize-handle absolute bottom-0 right-0 w-5 h-5 cursor-se-resize flex items-end justify-end p-[3px] z-50 bg-white border-t border-l border-black"
@@ -373,10 +287,6 @@ export default function Home() {
           </button>
         </div>
       )}
-
-      <div className="absolute bottom-8 left-8 text-black/10 text-6xl pointer-events-none uppercase">
-        System_32
-      </div>
     </main>
   );
 }

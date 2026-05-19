@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 export default function Card() {
@@ -41,28 +43,32 @@ export default function Card() {
     },
   ];
 
+  // Modified grid span definitions to optimize layout space for a listing index view
   const gridLayouts = [
     "col-span-6 md:col-span-4",
     "col-span-6 md:col-span-2",
     "col-span-6",
-    "col-span-6 md:col-span-2 row-span-2",
-    "col-span-3 md:col-span-2",
+    "col-span-6 md:col-span-3",
+    "col-span-3 md:col-span-3",
     "col-span-3 md:col-span-2",
     "col-span-6 md:col-span-4",
   ];
 
   return (
-    <section id="projects" className="py-10 bg-[#ffffff] ">
-      <div className="absolute inset-0 z-0 pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-6 ">
-        <div className="relative mb-20">
-          <h2 className="text-6xl font-rainy font-bold">
-            Projects and Designs
-          </h2>
+    <section id="projects" className="py-4 bg-[#ffffff] select-none font-rainy">
+      <div className="max-w-5xl mx-auto px-2">
+        {/* Directory Breadcrumb Header */}
+        <div className="border border-black bg-[#efeee9] px-3 py-1.5 mb-6 text-xs font-mono flex items-center justify-between shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          <span className="font-bold tracking-wide">
+            A:\PROJECTS_INDEX\LIST.TXT
+          </span>
+          <span className="opacity-40 text-[10px] hidden sm:inline">
+            ITEMS: {projects.length}
+          </span>
         </div>
 
-        <div className="grid grid-cols-6 gap-6 auto-rows-[300px] md:auto-rows-[350px]">
+        {/* Project Bento Grid */}
+        <div className="grid grid-cols-6 gap-4 auto-rows-[220px] md:auto-rows-[240px]">
           {projects.map((project, index) => (
             <ProjectItem
               key={project.title}
@@ -76,7 +82,6 @@ export default function Card() {
   );
 }
 
-// Local helper component to clean up the code mapping
 interface ProjectItemProps {
   project: {
     title: string;
@@ -88,41 +93,64 @@ interface ProjectItemProps {
 }
 
 function ProjectItem({ project, gridClasses }: ProjectItemProps) {
+  const isApp = project.title.toLowerCase().includes("app") || project.link;
+
   return (
     <div
-      className={`${gridClasses} border-[1.5px] border-black group relative overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-2`}
+      className={`${gridClasses} border border-black group relative overflow-hidden bg-[#fafafa] flex flex-col p-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-200`}
     >
-      {/* Project Image */}
-      {project.image && (
-        <div className="relative w-full h-full grayscale contrast-[1.2] brightness-[0.9] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover mix-blend-multiply opacity-[0.9]"
-          />
-          <div className="absolute inset-0 opacity-[0.15] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
-        </div>
-      )}
+      {/* File/Sub-directory Frame header decal */}
+      <div className="border border-black bg-[#efeee9] px-2 py-0.5 flex justify-between items-center text-[11px] font-mono select-none shrink-0 border-b-0">
+        <span className="truncate opacity-70 font-bold tracking-tight">
+          {isApp ? "⚙️ APP_EXEC" : "📁 SUB_DIR"}
+        </span>
+        <span className="text-[10px] opacity-40">
+          {isApp ? ".EXE" : ".DAT"}
+        </span>
+      </div>
 
-      {/* Content Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-8 flex flex-col justify-end">
-        <div className="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <h3 className="text-white font-rainy font-bold text-4xl uppercase leading-tight tracking-tighter">
+      <div className="border border-black bg-white flex-1 relative flex flex-col justify-between p-4 overflow-hidden">
+        {/* Optional Thumbnail Base Background */}
+        {project.image && (
+          <div className="absolute inset-0 z-0 opacity-10 grayscale contrast-150 pointer-events-none group-hover:opacity-20 transition-opacity">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
+
+        <div className="relative z-10 space-y-2">
+          {/* Item File Title */}
+          <h3 className="text-xl font-bold uppercase leading-tight tracking-tight text-black border-b border-dashed border-black/20 pb-1 group-hover:text-blue-700 transition-colors">
             {project.title}
           </h3>
 
-          <p className="text-zinc-300 text-sm mt-3 max-w-xl line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-rainy">
+          {/* Persistent Retro File Description */}
+          <p className="text-zinc-600 text-xs leading-relaxed line-clamp-3 md:line-clamp-4">
             {project.description}
           </p>
+        </div>
 
-          {project.link && project.link !== "#" && (
+        {/* Bottom Status Interface Bar / Link Button */}
+        <div className="relative z-10 pt-2 flex items-center justify-between text-[11px] font-mono shrink-0">
+          <span className="text-zinc-400 text-[10px]">
+            {isApp ? "[LAUNCHABLE]" : "[READ_ONLY]"}
+          </span>
+
+          {project.link ? (
             <a
               href={project.link}
-              className="inline-block mt-6 text-[11px] text-white font-rainy uppercase border-b border-white/30 pb-1 hover:border-white transition-colors tracking-[0.2em]"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-0.5 border border-black bg-[#efeee9] hover:bg-black hover:text-white transition-colors text-black font-bold shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:shadow-none"
             >
-              Visit Project
+              RUN_APP &gt;
             </a>
+          ) : (
+            <span className="text-zinc-400 italic">SYS_FILE</span>
           )}
         </div>
       </div>
