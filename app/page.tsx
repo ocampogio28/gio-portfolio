@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 
 import { useDraggable } from "@/hooks/useDraggable";
 import { useResizable } from "@/hooks/useResizable";
+import { useSound } from "@/hooks/useSound"; // <-- Import your custom hook
 
 export default function Home() {
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
@@ -21,12 +22,17 @@ export default function Home() {
 
   const [activeWindow, setActiveWindow] = useState<string>("master");
 
+  // Instantiating the keyboard click sound effect hook
+  const kbSound = useSound("./audio/kb1.wav", 0.4);
+
   const toggleWindow = (windowName: keyof typeof openWindows) => {
+    kbSound.play();
     setOpenWindows((prev) => ({ ...prev, [windowName]: !prev[windowName] }));
     setActiveWindow(windowName);
   };
 
   const closeWindow = (windowName: keyof typeof openWindows) => {
+    kbSound.play();
     setOpenWindows((prev) => ({ ...prev, [windowName]: false }));
   };
 
@@ -38,7 +44,7 @@ export default function Home() {
   const masterResize = useResizable(2200, 900, 600, 450);
   const infoResize = useResizable(800, 500, 320, 250);
   const projectsResize = useResizable(1000, 650, 350, 250);
-  const contactResize = useResizable(700, 600, 320, 300);
+  const contactResize = useResizable(700, 450, 250, 500);
 
   return (
     <main
@@ -75,7 +81,10 @@ export default function Home() {
               </span>
               <div className="text-right flex justify-end">
                 <button
-                  onClick={() => setIsPortfolioOpen(false)}
+                  onClick={() => {
+                    kbSound.play();
+                    setIsPortfolioOpen(false);
+                  }}
                   className="window-btn w-5 h-5 border border-black inline-flex items-center justify-center bg-white text-xs hover:bg-black hover:text-white transition-colors"
                 >
                   X
@@ -83,8 +92,14 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ─── MAIN WORKSPACE BODY ────────────────────────────────── */}
-            <div className="flex-1 relative bg-[#fafafa] p-6 pattern-dots overflow-hidden">
+            <div
+              className="flex-1 relative p-6 pattern-dots overflow-hidden bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/deskbg.jpg')",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 100%",
+              }}
+            >
               <Widget />
 
               {/* Desktop Executable Icons */}
@@ -266,9 +281,8 @@ export default function Home() {
               )}
             </div>
 
-            {/* ─── LOWER INNER FOOTER TASKBAR ─────────────────────────── */}
             <Footer />
-            {/* Corner Resize Handle Overlay */}
+
             <div
               onMouseDown={masterResize.onMouseDown}
               className="resize-handle absolute bottom-0 right-0 w-5 h-5 cursor-se-resize flex items-end justify-end p-[3px] z-50 bg-white border-t border-l border-black"
@@ -280,7 +294,10 @@ export default function Home() {
       ) : (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
           <button
-            onClick={() => setIsPortfolioOpen(true)}
+            onClick={() => {
+              kbSound.play();
+              setIsPortfolioOpen(true);
+            }}
             className="pointer-events-auto px-6 py-3 border-4 border-black font-rainy text-4xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-[#efeee9] text-black hover:bg-black hover:text-white active:translate-x-1 active:translate-y-1 active:shadow-none transition-all select-none"
           >
             [ RESTART_PORTFOLIO.EXE ]

@@ -1,7 +1,8 @@
+"use client"; // Required for state and client-side audio effects
+
 import Image from "next/image";
 
 export default function Hero() {
-  // Update these arrays with your actual stack!
   const skills = [
     "PHP",
     "Perl",
@@ -17,6 +18,7 @@ export default function Hero() {
     "C#",
     "SQL",
   ];
+
   const tools = [
     "VS Code",
     "Figma",
@@ -30,6 +32,23 @@ export default function Hero() {
     "VBA",
     "Shopify",
   ];
+
+  const sounds = ["/audio/kb1.wav", "/audio/kb2.wav", "/audio/kb3.wav"];
+
+  const playRandomSound = () => {
+    const randomSoundPath = sounds[Math.floor(Math.random() * sounds.length)];
+
+    const audio = new Audio(randomSoundPath);
+
+    audio.volume = 0.4;
+
+    audio.play().catch((err) => {
+      console.log(
+        "Audio playback blocked until user interacts with the page.",
+        err,
+      );
+    });
+  };
 
   return (
     <section
@@ -64,6 +83,7 @@ export default function Hero() {
                   {skills.map((skill) => (
                     <span
                       key={skill}
+                      onMouseEnter={playRandomSound}
                       className="font-rainy text-sm bg-gray-100 text-gray-800 px-3 py-1 rounded-md border border-gray-200/60 font-medium cursor-default transition-all duration-200 ease-in-out hover:bg-black hover:text-white hover:border-black hover:scale-105"
                     >
                       {skill}
@@ -80,6 +100,7 @@ export default function Hero() {
                   {tools.map((tool) => (
                     <span
                       key={tool}
+                      onMouseEnter={playRandomSound}
                       className="font-rainy text-sm bg-gray-50 text-gray-500 px-3 py-1 rounded-md border border-gray-200/50 cursor-default transition-all duration-200 ease-in-out hover:text-black hover:border-gray-400 hover:bg-white"
                     >
                       {tool}

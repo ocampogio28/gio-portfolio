@@ -8,7 +8,6 @@ export default function Card() {
       title: "Portfolio Website",
       description:
         "My personal Portfolio website showcasing my work and skills. Built with Next.js, Tailwind, Supabase and Vercel.",
-      image: "/portfolio-1.jpg",
       link: "https://gio-portfolio-rho.vercel.app/",
     },
     {

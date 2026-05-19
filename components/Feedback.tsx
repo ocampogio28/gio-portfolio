@@ -37,7 +37,9 @@ export default function Feedback() {
   };
 
   return (
-    <div className="w-full max-w-sm select-none">
+    /* Removed min-h-screen and high padding to stop stretching */
+    <div className="w-full max-w-sm select-none mx-auto">
+      {/* Form Card */}
       <div className="bg-[#efeee9] border-2 border-black p-1 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
         <div className="border border-black bg-white px-2 py-1 flex items-center justify-between mb-1 text-xs font-mono">
           <div className="flex items-center gap-1">
@@ -46,7 +48,7 @@ export default function Feedback() {
                 ? "success.sys"
                 : status === "error"
                   ? "error.sys"
-                  : "Feeback.exe"}
+                  : "Feedback.exe"}
             </span>
           </div>
           <div className="w-4 h-4 border border-black flex items-center justify-center font-bold text-[9px] bg-white">
@@ -54,8 +56,9 @@ export default function Feedback() {
           </div>
         </div>
 
-        <div className="border border-black bg-white p-5 pattern-dots relative">
-          <h3 className="text-xl font-rainy font-bold mb-4 tracking-wide text-black uppercase">
+        {/* Tighter internal padding (p-3 instead of p-5) */}
+        <div className="border border-black bg-white p-3 pattern-dots relative">
+          <h3 className="text-xl font-rainy font-bold mb-3 tracking-wide text-black uppercase">
             {status === "sent"
               ? "Thanks for the feedback!"
               : status === "error"
@@ -63,7 +66,8 @@ export default function Feedback() {
                 : "Contact me for work"}
           </h3>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Reduced vertical space between inputs (space-y-3) */}
+          <form onSubmit={handleSubmit} className="space-y-3">
             <div className="flex flex-col">
               <input
                 type="text"
@@ -88,7 +92,7 @@ export default function Feedback() {
               />
             </div>
 
-            <div className="flex pt-1">
+            <div className="flex">
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
@@ -108,6 +112,26 @@ export default function Feedback() {
             </div>
           </form>
         </div>
+      </div>
+
+      {/* --- Pulled closer to the card (mt-3 instead of mt-6) --- */}
+      <div className="flex items-center justify-center gap-3 mt-3">
+        <a
+          href="https://github.com/ocampogio28"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1 border border-black bg-[#efeee9] text-black font-rainy font-bold tracking-wider text-xs uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all hover:bg-black hover:text-white active:shadow-none active:translate-x-[3px] active:translate-y-[3px]"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/gio-ocampo-22b4691a2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1 border border-black bg-[#efeee9] text-black font-rainy font-bold tracking-wider text-xs uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all hover:bg-black hover:text-white active:shadow-none active:translate-x-[3px] active:translate-y-[3px]"
+        >
+          LinkedIn
+        </a>
       </div>
     </div>
   );
