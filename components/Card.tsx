@@ -11,14 +11,15 @@ export default function Card() {
       link: "https://gio-portfolio-rho.vercel.app/",
     },
     {
+      title: "To Do (Desktop App)",
+      description:
+        "A simple task manager for desktop use, created using flutter. download to-doV1.rar to test the application.",
+      link: "https://github.com/ocampogio28/ToDo/releases/tag/DesktopApp",
+    },
+    {
       title: "Virtual Museum",
       description:
         "An interactive virtual museum experience exploring digital art and 3D modeling.",
-    },
-    {
-      title: "To Do (Desktop App)",
-      description:
-        "A high-productivity task manager built for desktop workflows, focusing on keyboard shortcuts and rapid entry.",
     },
     {
       title: "Fantasy Ecommerce",
