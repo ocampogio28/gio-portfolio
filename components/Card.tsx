@@ -13,7 +13,7 @@ export default function Card() {
     {
       title: "To Do (Desktop App)",
       description:
-        "A simple task manager for desktop use, created using flutter. download to-doV1.rar to test the application.",
+        "A simple task manager for desktop use, created using flutter. download todo.exe to test the application.",
       link: "https://github.com/ocampogio28/ToDo/releases/tag/DesktopApp",
     },
     {
