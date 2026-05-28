@@ -18,6 +18,7 @@ export default function Hero() {
     "C#",
     "SQL",
     "Flutter",
+    "Laravel",
   ];
 
   const tools = [
@@ -115,10 +116,11 @@ export default function Hero() {
           <div className="flex justify-center md:justify-end order-1 md:order-2">
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px]">
               <Image
-                src="/home.gif"
+                src="/home.png"
                 alt="Gio's Visual Work"
                 fill
                 priority
+                sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, 420px"
                 className="object-contain"
               />
             </div>
