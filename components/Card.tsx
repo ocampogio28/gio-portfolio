@@ -19,7 +19,8 @@ export default function Card() {
     {
       title: "Virtual Museum",
       description:
-        "An interactive virtual museum experience exploring digital art and 3D modeling.",
+        "A Personal financial tracker, created using Next.js data is stored in browser local storage. It allows users to track their expenses and visualize their spending habits over time.",
+      link: "https://finance-tracker-henna-omega.vercel.app/",
     },
     {
       title: "Fantasy Ecommerce",
