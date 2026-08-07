@@ -17,7 +17,7 @@ export default function Card() {
       link: "https://github.com/ocampogio28/ToDo/releases/tag/DesktopApp",
     },
     {
-      title: "Virtual Museum",
+      title: "Financial Tracker (Web App)",
       description:
         "A Personal financial tracker, created using Next.js data is stored in browser local storage. It allows users to track their expenses and visualize their spending habits over time.",
       link: "https://finance-tracker-henna-omega.vercel.app/",
