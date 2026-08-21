@@ -23,24 +23,25 @@ export default function Card() {
       link: "https://finance-tracker-henna-omega.vercel.app/",
     },
     {
-      title: "Fantasy Ecommerce",
+      title: "Clip board (Web App)",
       description:
-        "An immersive shopping experience for tabletop RPG enthusiasts, featuring dynamic inventory and lore-based descriptions.",
+        "A personal clipboard manager, created using Next.js data is stored in browser local storage. It allows users to save and organize their clipboard history for easy access.",
+      link: "https://clip-board-aa0j72u9f-ocampogio28s-projects.vercel.app/",
     },
     {
-      title: "Cozy Coffeeshop",
-      description:
-        "Minimalist landing page for a boutique roastery, prioritizing warmth and visual storytelling.",
+      title: "NA",
+      description: "NA",
+      link: "https://gio-portfolio-rho.vercel.app/",
     },
     {
-      title: "GYM",
-      description:
-        "Workout tracking and progress visualization designed for mobile-first gym sessions.",
+      title: "NA",
+      description: "NA",
+      link: "https://gio-portfolio-rho.vercel.app/",
     },
     {
-      title: "Finance Tracker (Desktop App)",
-      description:
-        "Personal finance dashboard for tracking expenses with real-time data visualization and export features.",
+      title: "NA",
+      description: "NA",
+      link: "https://gio-portfolio-rho.vercel.app/",
     },
   ];
 
