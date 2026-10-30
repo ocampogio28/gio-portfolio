@@ -29,9 +29,10 @@ export default function Card() {
       link: "https://clip-board-aa0j72u9f-ocampogio28s-projects.vercel.app/",
     },
     {
-      title: "NA",
-      description: "NA",
-      link: "https://gio-portfolio-rho.vercel.app/",
+      title: "ps2 showcase",
+      description:
+        "Web design project for a ps2 showcase, created using Next.js and Tailwind.",
+      link: "https://ps2-showcase.vercel.app/",
     },
     {
       title: "NA",

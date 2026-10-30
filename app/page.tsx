@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
-import Feedback from "@/components/Feedback";
 import Widget from "@/components/Widget";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 import { useDraggable } from "@/hooks/useDraggable";
@@ -268,7 +268,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="p-6 flex-1 overflow-y-auto space-y-4">
-                      <Feedback />
+                      <Contact />
                     </div>
                     <div
                       onMouseDown={contactResize.onMouseDown}
