@@ -26,7 +26,7 @@ export default function Card() {
       title: "Clip board (Web App)",
       description:
         "A personal clipboard manager, created using Next.js data is stored in browser local storage. It allows users to save and organize their clipboard history for easy access.",
-      link: "https://clip-board-aa0j72u9f-ocampogio28s-projects.vercel.app/",
+      link: "https://clip-board-ten.vercel.app/",
     },
     {
       title: "ps2 showcase",
